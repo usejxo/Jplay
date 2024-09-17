@@ -18,6 +18,17 @@
       text-align: center;
       font-size: 24px;
     }
+    .search-bar {
+      text-align: center;
+      margin: 20px;
+    }
+    .search-bar input {
+      width: 300px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
     .app-list {
       display: flex;
       justify-content: center;
@@ -55,23 +66,25 @@
     Play Store
   </div>
 
+  <div class="search-bar">
+    <input type="text" placeholder="Search apps...">
+  </div>
+
   <div class="app-list">
     <div class="app-item" onclick="window.location.href='https://jxplay.netlify.app/minecraft'">
       <img src="/minecraft/icon.png" alt="Minecraft">
       <h3>Minecraft</h3>
     </div>
-  </div>
-
-  <div class="app-list"></div>
     <div class="app-item" onclick="window.location.href='https://jxplay.netlify.app/cc'">
       <img src="/cc/icon.png" alt="Cookie Clicker">
       <h3>Cookie Clicker</h3>
+    </div>
+    <div class="app-item" onclick="window.location.href='https://jxplay.netlify.app/npp'">
+      <img src="/npp/icon.png" alt="NotePad">
+      <h3>NotePad Pro</h3>
+      <p>$2.00</p>
+    </div>
+  </div>
 
-      <div class="app-list"></div>
-      <div class="app-item" onclick="window.location.href='https://jxplay.netlify.app/npp'">
-        <img src="/npp/icon.png" alt="NotePad">
-        <h3>NotePad Pro</h3>
-        <h3>$2.00</h3>
-  
 </body>
 </html>
