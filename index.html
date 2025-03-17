@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JBlox - Your Gaming Hub</title>
+    <title>Jplay - Your Gaming Hub</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1c1c1c;
-            color: #fff;
+            background-color: #000;
+            color: #7FFF00;
             margin: 0;
             padding: 20px;
-            display: none; /* Hide content until password is entered */
         }
         h1, h2 {
-            color: #fff;
+            color: #7FFF00;
             margin-left: 10px;
         }
         .search-bar {
@@ -44,7 +43,7 @@
             border-radius: 10px;
             padding: 10px;
             text-decoration: none;
-            color: #fff;
+            color: #7FFF00;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
         }
@@ -71,35 +70,15 @@
             width: 100%;
             text-align: center;
         }
-        .user-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .user-section .username {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .user-section .jbux {
-            font-size: 16px;
-            color: #00ff00;
-        }
     </style>
 </head>
 <body>
 
-    <h1>JBlox - Your Gaming Hub</h1>
+    <h1>Jplay - Your Gaming Hub</h1>
 
     <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" id="search-input" onkeyup="searchGames()" placeholder="Search for games...">
-    </div>
-
-    <!-- Recently Played Section -->
-    <h2 class="section-title">Recently Played</h2>
-    <div class="game-container" id="recently-played">
-        <!-- Recently played games will be inserted here by JavaScript -->
     </div>
 
     <!-- Recommended Section -->
@@ -116,19 +95,10 @@
 
     <!-- Footer -->
     <div class="footer">
-        <p>&copy; 2024 JBlox - All rights reserved.</p>
+        <p>&copy; 2024 Jplay - All rights reserved.</p>
     </div>
 
     <script>
-        // Simple password protection
-        var password = prompt("Please enter the beta access password:");
-        if (password !== "jxobloxbeta1!") {
-            alert("Incorrect password. Access denied.");
-            window.location.href = "about:blank"; // Redirect to blank page if incorrect
-        } else {
-            document.body.style.display = "block"; // Show content if correct
-        }
-
         // Game data
         const games = [
             { title: 'Shooter', img: 'https://jblox.netlify.app/images/g1.png', link: 'https://jbg1.netlify.app/' },
@@ -141,19 +111,6 @@
             { title: 'Game 8', img: 'https://jblox.netlify.app/images/nd.png', link: 'https://jblox.netlify.app/gna' }
         ];
 
-        // Utility function to save recently played games in localStorage
-        function saveRecentlyPlayed(game) {
-            let recentlyPlayed = JSON.parse(localStorage.getItem('recentlyPlayed')) || [];
-            // Remove the game if it's already in the list to avoid duplicates
-            recentlyPlayed = recentlyPlayed.filter(g => g.title !== game.title);
-            // Add the new game to the front of the array
-            recentlyPlayed.unshift(game);
-            // Keep only the latest 5 games
-            recentlyPlayed = recentlyPlayed.slice(0, 5);
-            // Save back to localStorage
-            localStorage.setItem('recentlyPlayed', JSON.stringify(recentlyPlayed));
-        }
-
         // Function to display games in a container
         function displayGames(containerId, gameList) {
             const container = document.getElementById(containerId);
@@ -161,7 +118,7 @@
 
             gameList.forEach(game => {
                 const gameCard = `
-                    <a href="${game.link}" class="game-card" onclick="saveRecentlyPlayed(${JSON.stringify(game)})">
+                    <a href="${game.link}" class="game-card">
                         <img src="${game.img}" alt="${game.title}">
                         <div class="game-title">${game.title}</div>
                     </a>`;
@@ -169,24 +126,15 @@
             });
         }
 
-        // Display recently played games from localStorage
-        function displayRecentlyPlayed() {
-            const recentlyPlayed = JSON.parse(localStorage.getItem('recentlyPlayed')) || [];
-            displayGames('recently-played', recentlyPlayed);
-        }
-
         // Display 4 random recommended games
-        const recommendedGames = getRandomGames(games, 4);
-        displayGames('recommended-games', recommendedGames);
-
-        // Display All Games
-        displayGames('all-games', games);
-
-        // Utility function to shuffle and pick random games
         function getRandomGames(array, num) {
             const shuffled = array.sort(() => 0.5 - Math.random());
             return shuffled.slice(0, num);
         }
+        displayGames('recommended-games', getRandomGames(games, 4));
+
+        // Display All Games
+        displayGames('all-games', games);
 
         // Search Functionality
         function searchGames() {
@@ -202,13 +150,6 @@
                 }
             }
         }
-
-        // Initial display of user info (this function should exist based on your logic)
-        displayUserInfo();
-
-        // Display recently played games on page load
-        displayRecentlyPlayed();
     </script>
-
 </body>
 </html>
